@@ -1,4 +1,5 @@
 import random
+import os
 
 def run():
 
@@ -27,54 +28,53 @@ def run():
     +---+
     |   |
     O   |
-  /|   |
+   /|   |
         |
         |
   =========''', '''
     +---+
     |   |
     O   |
-  /|\  |
+   /|\  |
         |
         |
   =========''', '''
     +---+
     |   |
     O   |
-  /|\  |
-  /    |
+   /|\  |
+   /    |
         |
   =========''', '''
     +---+
     |   |
     O   |
-  /|\  |
-  / \  |
+   /|\  |
+   / \  |
         |
   =========''']
   
     DB = [
-      "C",
+
       "PYTHON",
-      "JAVA",
+
       "JAVASCRIPT",
-      "PHP",
-      "RUBY",
-      "PERL",
-      "SWIFT",
     ]
     
     word = random.choice(DB)
     
     spaces = ["_"] * len(word)
     
-    lives = 6
+    lives = 0
     
-    while lives > 0:
+    
+    while True:
         print(IMAGES[lives])
         print("".join(spaces))
         
         guess = input("guess a letter: ").upper()
+        
+        os.system("cls")
         
         if guess in word:
             index = 0
@@ -83,15 +83,17 @@ def run():
                     spaces[index] = guess
                 index += 1
         else:
-            lives -= 1
+            lives += 1
             print("wrong guess")
-            print(f"you have {lives} lives left")
+            print(f"you have {6 - lives} lives left")
             
         if "_" not in spaces:
             print("you win")
             break
           
-    print("you lose")
+        if lives == 6:
+            print("you lose")
+            break
     
     print("the word was", word)
     
