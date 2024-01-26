@@ -1,6 +1,7 @@
 import random
 import os
 
+
 def run():
 
     IMAGES = ['''
